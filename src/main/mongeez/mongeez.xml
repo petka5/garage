@@ -1,0 +1,4 @@
+<!-- mvn mongeez:update -->
+<changeFiles>
+    <file path="script1.js"/>
+</changeFiles>

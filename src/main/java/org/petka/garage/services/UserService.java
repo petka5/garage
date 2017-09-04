@@ -6,13 +6,13 @@ import org.petka.garage.dto.UserDto;
 
 public interface UserService {
     
-    UserDto create(UserDto todo);
+    public UserDto create(UserDto userDto);
 
-    UserDto delete(String id);
+    public UserDto delete(String id);
 
-    List<UserDto> findAll();
+    public List<UserDto> findAll();
 
-    UserDto findById(String id);
+    public UserDto findById(String id);
 
-    UserDto update(UserDto todo);
+    public UserDto update(UserDto userDto);
 }

@@ -8,12 +8,12 @@ import org.springframework.data.repository.Repository;
 
 public interface UserRepository extends Repository<User, String> {
 
-    void delete(User user);
+    public void delete(User user);
 
-    List<User> findAll();
+    public List<User> findAll();
 
-    Optional<User> findOne(String id);
+    public Optional<User> findOne(String id);
 
-    User save(User user);
+    public User save(User user);
 
 }

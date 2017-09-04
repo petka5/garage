@@ -4,8 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.data.rest.RepositoryRestMvcAutoConfiguration;
 
-@SpringBootApplication()
+@SpringBootApplication(exclude = RepositoryRestMvcAutoConfiguration.class)
 public class Garage {
 
     private static final Logger logger = LoggerFactory.getLogger(Garage.class);
