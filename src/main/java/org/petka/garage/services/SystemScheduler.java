@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class SystemScheduler {
     private static final Logger logger = LoggerFactory.getLogger(SystemScheduler.class);
 
-    @Scheduled(cron = "0 0/10 0 * * *")
+    @Scheduled(cron = "0 0/1 * * * *")
     public void registrationCleanerScheduler() {
         logger.debug("registrationCleanerScheduler is runnign.");
     }
