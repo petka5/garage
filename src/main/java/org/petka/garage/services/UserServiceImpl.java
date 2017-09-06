@@ -1,12 +1,8 @@
 package org.petka.garage.services;
 
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Optional;
 
-import org.petka.garage.config.Constants;
 import org.petka.garage.dto.UserDto;
 import org.petka.garage.persistence.entities.Country;
 import org.petka.garage.persistence.entities.Language;
@@ -17,6 +13,7 @@ import org.petka.garage.persistence.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,6 +27,8 @@ public class UserServiceImpl implements UserService {
     private CountryRepository countryRepository;
     @Autowired
     private LanguageRepository languageRepository;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public UserDto create(UserDto userDto) {
@@ -37,9 +36,30 @@ public class UserServiceImpl implements UserService {
         Optional<Language> language = languageRepository.findByLang(userDto.getLanguage());
         Optional<Country> country = countryRepository.findByIso(userDto.getCountry());
 
-        User user = User.getBuilder().email(userDto.getEmail()).password(sha256WithSalt(userDto.getPassword())).language(language.get())
+        User user = User.getBuilder().email(userDto.getEmail()).password(bCryptPasswordEncoder.encode(userDto.getPassword())).language(language.get())
                 .country(country.get()).build();
+        logger.info("Creating user {}", user);
         return convertToDTO(userRepository.save(user));
+    }
+
+    public UserDto findByEmailAndPassword(String email, String password) {
+        User user = userRepository.findByEmailAndPassword(email, password);
+        if (user != null) {
+            return convertToDTO(user);
+        }
+        return null;
+    }
+
+    @Override
+    public UserDto findByEmail(String email) {
+        User user = userRepository.findByEmail(email);
+        return convertToDTO(user);
+    }
+
+    @Override
+    public UserDto findByEmailAndEnabledTrue(String email) {
+        User user = userRepository.findByEmailAndEnabledTrue(email);
+        return convertToDTO(user);
     }
 
     @Override
@@ -64,36 +84,20 @@ public class UserServiceImpl implements UserService {
     }
 
     private UserDto convertToDTO(User user) {
-        UserDto userDto = new UserDto();
-        userDto.setEmail(user.getEmail());
-        userDto.setPassword(user.getPassword());
-        userDto.setId(user.getId());
-        userDto.setLanguage(user.getLanguage().getLang());
-        userDto.setCountry(user.getCountry().getIso());
+        if (user != null) {
+            UserDto userDto = new UserDto();
+            userDto.setEmail(user.getEmail());
+            userDto.setPassword(user.getPassword());
+            userDto.setId(user.getId());
+            userDto.setLanguage(user.getLanguage().getLang());
+            userDto.setCountry(user.getCountry().getIso());
+            userDto.setCreatedDate(user.getCreatedDate());
+            userDto.setLastLoginDate(user.getLastLoginDate());
+            userDto.setLastModifiedDate(user.getLastModifiedDate());
 
-        return userDto;
-    }
-
-    private String sha256WithSalt(String msg) {
-        try {
-            msg = Constants.APP_SALT + msg;
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] hash = digest.digest(msg.getBytes("UTF-8"));
-            StringBuffer hexString = new StringBuffer();
-
-            for (int i = 0; i < hash.length; i++) {
-                String hex = Integer.toHexString(0xff & hash[i]);
-                if (hex.length() == 1)
-                    hexString.append('0');
-                hexString.append(hex);
-            }
-
-            return hexString.toString();
-        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
-            logger.error(e.getMessage());
+            return userDto;
         }
-
         return null;
-
     }
+
 }

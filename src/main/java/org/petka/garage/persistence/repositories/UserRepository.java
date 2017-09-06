@@ -8,12 +8,18 @@ import org.springframework.data.repository.Repository;
 
 public interface UserRepository extends Repository<User, String> {
 
+    public Optional<User> findOne(String id);
+
+    public User save(User user);
+
+    public User findByEmailAndEnabledTrue(String email);
+
     public void delete(User user);
 
     public List<User> findAll();
 
-    public Optional<User> findOne(String id);
+    public User findByEmailAndPassword(String email, String password);
 
-    public User save(User user);
+    public User findByEmail(String email);
 
 }

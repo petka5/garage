@@ -1,6 +1,7 @@
 package org.petka.garage.persistence.entities;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "languages")
@@ -8,7 +9,9 @@ public class Language {
 
     @Id
     private String id;
+    @Indexed(unique = true)
     private String name;
+    @Indexed(unique = true)
     private String lang;
 
     public String getId() {

@@ -13,8 +13,11 @@ public class UserDto {
     private String password;
     private String country;
     private String language;
+    @JsonProperty(access = Access.READ_ONLY)
     private Date createdDate;
+    @JsonProperty(access = Access.READ_ONLY)
     private Date lastModifiedDate;
+    @JsonProperty(access = Access.READ_ONLY)
     private Date lastLoginDate;
 
     public String getId() {
@@ -83,6 +86,6 @@ public class UserDto {
 
     @Override
     public String toString() {
-        return String.format("id=%s, email=%s, password=%s", id, email, password);
+        return String.format("id=%s, email=%s, language=%s, country=%s", id, email, language, country);
     }
 }

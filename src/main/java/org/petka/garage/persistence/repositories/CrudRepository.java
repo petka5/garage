@@ -1,9 +1,5 @@
 package org.petka.garage.persistence.repositories;
 
-import java.io.Serializable;
-
-import org.springframework.data.repository.Repository;
-
 /*public interface CrudRepository<T, ID extends Serializable> extends Repository<T, ID> {
 
     public <S extends T> S save(S entity);
