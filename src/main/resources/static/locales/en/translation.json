@@ -1,0 +1,8 @@
+{
+  "viewLogin": {
+    "register": "Register",
+    "login": "Login",
+    "username": "Username",
+    "password": "Password"
+  }
+}

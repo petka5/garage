@@ -1,3 +1,4 @@
 /target/
 /application.log
 /.settings/
+/node_modules/
