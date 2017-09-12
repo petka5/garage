@@ -1,7 +1,7 @@
 // Using the Require.js text! plugin, we are loaded raw text
 // which will be used as our views primary template
 define(
-		[ 'jquery', 'underscore', 'backbone'],
+		[ 'jquery', 'underscore', 'backbone' ],
 		function($, _, Backbone, loginTemplate) {
 			var LoginView = Backbone.View
 					.extend({
@@ -19,17 +19,19 @@ define(
 				            </div>'),
 						el : $('#menu'),
 						events : {
+				            "change input": "changed",
 							'click #login' : 'login',
 							'login:success' : 'remove',
 						},
 						initialize : function() {
-						    //this.username = $("#username");
-						    //this.password = $("#password");
-						    //this.loginButton = $("#login");
-						    //this.model.view = this;
-						    Backbone.Validation.bind(this);
-							this.render();
+							_.bindAll(this, "changed"), this.render();
+							Backbone.Validation.bind(this);
 							Backbone.Events.on('login:success', this.remove, this);
+						},
+						changed : function(evt) {
+							var target = $(evt.currentTarget), data = {};
+							data[target.attr('id')] = target.val();
+							this.model.set(data);
 						},
 						render : function() {
 							// Using Underscore we can compile our template with
@@ -41,17 +43,17 @@ define(
 						},
 						remove : function() {
 							this.$el.empty().off();
-						    Backbone.Validation.unbind(this);
-				            return Backbone.View.prototype.remove.apply(this, arguments);
+							Backbone.Validation.unbind(this);
+							return Backbone.View.prototype.remove.apply(this, arguments);
 							/* off to unbind the events */
 							this.stopListening();
 						},
 						login : function(e) {
 							e.preventDefault();
-						    if(this.model.isValid(true)){
-					            // this.model.save();
-					            alert('Great Success!');
-					        }
+							if (this.model.isValid(true)) {
+								// this.model.save();
+								alert('Great Success!');
+							}
 							$.ajax({
 								type : 'POST',
 								url : 'login',
