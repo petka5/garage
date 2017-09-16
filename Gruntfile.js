@@ -13,25 +13,73 @@ module.exports = function(grunt) {
 				args : [ '--config=../../mongod.conf' ]
 			}
 		},
+		less : {
+			min : {
+				options : {
+					paths : [ 'src/main/resources/static/css/less' ],
+					sourceMap : false,
+					compress : true,
+					banner : '/*! rev #<%= gitinfo.local.branch.current.SHA %>, built on <%= grunt.template.today("yyyy-mm-dd HH:MM:ss") %>*/'
+				},
+				files : {
+					'src/main/resources/static/css/styles.css' : 'src/main/resources/static/css/less/main.less'
+				}
+			}
+		},
 		copy : {
-			files : {
-				expand : true,
-				cwd : 'src/main/resources/static/',
-				src : [ '**/*' ],
-				dest : 'target/classes/static/'
+			js : {
+				files : [ {
+					expand : true,
+					cwd : 'src/main/resources/static/js/',
+					src : [ '**/*.js' ],
+					dest : 'target/classes/static/js/'
+				} ]
+			},
+			html : {
+				files : [ {
+					expand : true,
+					cwd : 'src/main/resources/static/',
+					src : [ '**/*.html' ],
+					dest : 'target/classes/static/'
+				} ]
+			},
+			styles : {
+				files : [ {
+					expand : true,
+					cwd : 'src/main/resources/static/css',
+					src : [ '**/*.css' ],
+					dest : 'target/classes/static/css/'
+				} ]
 			}
 		},
 		watch : {
-				files : [ 'src/main/resources/static/**/*' ],
-				tasks : [ 'copy' ]
+			js : {
+				files : [ 'src/main/resources/static/**/*.js' ],
+				tasks : [ 'copy:js' ]
+			},
+			html:{
+				files : [ 'src/main/resources/static/**/*.html' ],
+				tasks : [ 'copy:html' ]		
+			},
+			less:{
+				files : [ 'src/main/resources/static/css/**/*.less' ],
+				tasks : [ 'gitinfo', 'less:min', 'copy:styles' ]		
+			}
+		},
+		 gitinfo : {
+			options : {
+				cwd : '.'
+			}
 		}
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-run');
+	grunt.loadNpmTasks('grunt-gitinfo');
 	
-	grunt.registerTask("start", [ "run:mongo" ]);
+	grunt.registerTask("startMongo", [ "run:mongo" ]);
 	grunt.registerTask("default", [ "watch" ]);
 }

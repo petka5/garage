@@ -5,7 +5,7 @@ define([ 'jquery', 'underscore', 'backbone', 'views/login', 'models/login', 'vie
 			'/login' : 'login',
 			// Default
 			'*actions' : 'login'
-		}
+		} 
 	});
 
 	var ViewsFactory = {
