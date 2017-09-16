@@ -3,10 +3,8 @@
 define(
 		[ 'jquery', 'underscore', 'backbone' ],
 		function($, _, Backbone, loginTemplate) {
-			var LoginView = Backbone.View
-					.extend({
-						template : _
-								.template('\
+			var LoginView = Backbone.View.extend({
+						template : _.template('\
 				            <div class="login box">\
 				                <div class="form-group"><input type="text" id="username" data-i18n="[placeholder]viewLogin.username"/>\
 							            <span class="help-block hidden"></span></div>\
@@ -24,7 +22,8 @@ define(
 							'login:success' : 'remove',
 						},
 						initialize : function() {
-							_.bindAll(this, "changed"), this.render();
+							_.bindAll(this, "changed"); 
+							this.render();
 							Backbone.Validation.bind(this);
 							Backbone.Events.on('login:success', this.remove, this);
 						},
