@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class RegistrationControler {
+public class RegistrationController {
 
-    private static final Logger logger = LoggerFactory.getLogger(RegistrationControler.class);
+    private static final Logger logger = LoggerFactory.getLogger(RegistrationController.class);
 
     @Autowired
     private SignUpActivationService signUpActivationService;

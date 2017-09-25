@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.data.rest.RepositoryRestMvcAutoConfiguration;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -14,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @SpringBootApplication(exclude = RepositoryRestMvcAutoConfiguration.class)
 @Configuration
 @EnableScheduling
+@EnableCaching
 public class Garage {
 
     private static final Logger logger = LoggerFactory.getLogger(Garage.class);
