@@ -5,6 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title>Hello World in Backbone.js</title>
 <link rel="stylesheet" href="css/styles.css">
+<!-- link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"-->
 <!-- Load the script "js/main.js" as our entry point -->
 <script data-main="js/main" src="js/libs/require.js"></script>
 </head>
@@ -12,6 +13,7 @@
 	<div id="container">
 		<div id="langMenu"></div>
 		<div id="menu"></div>
+		<div id="signUp"></div>
 		<div id="content"></div>
 	</div>
 	<!-- ========= -->
@@ -32,5 +34,37 @@
 		// your JS code goes here
 	</script>
 
+
+	<!-- https://codepen.io/josemc/pen/Kwbapp -->
+		<div class="container">
+			<div class="row">
+				<h4>Account</h4>
+				<div class="input-group input-group-icon">
+					<input type="text" placeholder="Full Name" />
+					<div class="input-icon">
+						<i class="fa fa-user"></i>
+					</div>
+				</div>
+				<div class="input-group input-group-icon">
+					<input type="email" placeholder="Email Adress" />
+					<div class="input-icon">
+						<i class="fa fa-envelope"></i>
+					</div>
+				</div>
+				<div class="input-group input-group-icon">
+					<input type="password" placeholder="Password" />
+					<div class="input-icon">
+						<i class="fa fa-key"></i>
+					</div>
+				</div>
+				<div class="col-half">
+					<h4>Gender</h4>
+					<div class="input-group">
+						<input type="radio" name="gender" value="male" id="gender-male" /><label for="gender-male">Male</label> <input type="radio" name="gender" value="female" id="gender-female" /><label
+							for="gender-female">Female</label>
+					</div>
+				</div>
+			</div>
+		</div>
 </body>
 </html>

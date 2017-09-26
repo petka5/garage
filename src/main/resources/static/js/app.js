@@ -19,16 +19,16 @@ define([ 'jquery', 'underscore', 'backbone', 'router', 'i18n', 'backbone-validat
 
 	_.extend(Backbone.Validation.callbacks, {
 		valid : function(view, attr, selector) {
-			var $el = view.$('[id=' + attr + ']'), $group = $el.closest('.form-group');
+			var $el = view.$('[id=' + attr + ']'), $group = $el.closest('.input-group');
 
 			$group.removeClass('has-error');
-			$group.find('.help-block').html('').addClass('hidden');
+			$group.next('.help-block').removeClass('has-error').html('').addClass('hidden');
 		},
 		invalid : function(view, attr, error, selector) {
-			var $el = view.$('[id=' + attr + ']'), $group = $el.closest('.form-group');
+			var $el = view.$('[id=' + attr + ']'), $group = $el.closest('.input-group');
 
 			$group.addClass('has-error');
-			$group.find('.help-block').html(error).removeClass('hidden');
+			$group.next('.help-block').addClass('has-error').html(error).removeClass('hidden');
 		}
 	});
 

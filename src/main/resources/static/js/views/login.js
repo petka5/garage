@@ -1,20 +1,31 @@
 // Using the Require.js text! plugin, we are loaded raw text
 // which will be used as our views primary template
 define(
-		[ 'jquery', 'underscore', 'backbone' ],
-		function($, _, Backbone, loginTemplate) {
+		[ 'jquery', 'underscore', 'backbone', 'i18n' ],
+		function($, _, Backbone, i18n) {
 			var LoginView = Backbone.View.extend({
 						template : _.template('\
-				            <div class="login box">\
-				                <div class="form-group"><input type="text" id="username" data-i18n="[placeholder]viewLogin.username"/>\
-							            <span class="help-block hidden"></span></div>\
-				                <div class="form-group"><input type="password" id="password" data-i18n="[placeholder]viewLogin.password"/>\
-							            <span class="help-block hidden"></span></div>\
-				                <div>\
-				                    <input id="register" type="button" data-i18n="[value]viewLogin.register" class="button">\
-				                    <input id="login" type="button" data-i18n="[value]viewLogin.login" class="button">\
-				                </div>\
-				            </div>'),
+							<div class="container">\
+								<div class="row">\
+									<h4 data-i18n="viewLogin.login"></h4>\
+									<div class="input-group input-group-icon">\
+										<input type="email" id="username" data-i18n="[placeholder]viewLogin.username" />\
+										<div class="input-icon"><i class="fa fa-envelope"></i></div>\
+									</div>\
+									<span class="help-block hidden"></span>\
+									<div class="input-group input-group-icon">\
+										<input type="password" id="password" data-i18n="[placeholder]viewLogin.password" />\
+										<div class="input-icon"><i class="fa fa-key"></i></div>\
+									</div>\
+									<span class="help-block hidden"></span>\
+									<div class="input-group button">\
+										<input id="login" type="button" data-i18n="[value]viewLogin.login" />\
+									</div>\
+									<div class="input-group button">\
+										<input id="register" type="button" data-i18n="[value]viewLogin.register" />\
+									</div>\
+								</div>\
+							</div>'),
 						el : $('#menu'),
 						events : {
 				            "change input": "changed",

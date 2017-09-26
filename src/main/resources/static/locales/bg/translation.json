@@ -1,7 +1,7 @@
 {
 	"viewLogin": {
 		"register": "Регистрация",
-		"login": "Логин",
+		"login": "Вход",
 		"username": "Потребител",
 		"password": "Парола"
 	},
