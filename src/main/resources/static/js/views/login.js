@@ -11,13 +11,13 @@ define(
 									<div class="input-group input-group-icon">\
 										<input type="email" id="username" data-i18n="[placeholder]viewLogin.username" />\
 										<div class="input-icon"><i class="fa fa-envelope"></i></div>\
+										<span class="help-block hidden"></span>\
 									</div>\
-									<span class="help-block hidden"></span>\
 									<div class="input-group input-group-icon">\
 										<input type="password" id="password" data-i18n="[placeholder]viewLogin.password" />\
 										<div class="input-icon"><i class="fa fa-key"></i></div>\
+										<span class="help-block hidden"></span>\
 									</div>\
-									<span class="help-block hidden"></span>\
 									<div class="input-group button">\
 										<input id="login" type="button" data-i18n="[value]viewLogin.login" />\
 									</div>\
@@ -42,6 +42,7 @@ define(
 							var target = $(evt.currentTarget), data = {};
 							data[target.attr('id')] = target.val();
 							this.model.set(data);
+							this.model.isValid(target.attr('id'));
 						},
 						render : function() {
 							// Using Underscore we can compile our template with

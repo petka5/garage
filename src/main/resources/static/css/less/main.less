@@ -38,6 +38,7 @@
 @blue-dark: #0F6CC9;
 @color-primary: @green;
 @color-primary-strong: darken(saturate(@color-primary, 5%), 10%);
+@color-error: red;
 
 @br: 3px;
 
@@ -89,6 +90,11 @@ input {
         border-right-color: @color-primary;
       }
     }
+  }
+  &[type="text"], &[type="password"], &[type="email"]{
+	&.has-error{
+		border-color: @color-error;
+	}
   }
   &[type="radio"] {
     display: none;
@@ -188,7 +194,7 @@ input {
 
 select {
   &:extend(input[type="radio"] + label);
-  height: 3.4em;
+  height: 3.0em;
   line-height: 2;
   &:first-of-type {
     border-top-left-radius: @br;
@@ -212,34 +218,34 @@ select {
 .input-group {
 	margin-bottom: 1em;
 	.clearfix ();
-	&.has-error {
-		border: 1px solid red;
-	}
 }
 
 span.has-error {
-	color: red;
+	position: absolute;
+	font-size: 0.8em;
+	left: 3.7em;
+	color: @color-error;
 }
 
 .input-group-icon {
   position: relative;
   input {
-    padding-left: 4.4em;
+    padding-left: 4.0em;
   }
   .input-icon {
     position: absolute;
     top: 0;
     left: 0;
-    width: 3.4em;
-    height: 3.4em;
-    line-height: 3.4em;
+    width: 3.0em;
+    height: 3.0em;
+    line-height: 3.0em;
     text-align: center;
     pointer-events: none;
     &:after {
       position: absolute;
       top: 0.6em;
       bottom: 0.6em;
-      left: 3.4em;
+      left: 3.0em;
       display: block;
       border-right: 1px solid @grey;
       content: "";
