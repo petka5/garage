@@ -5,7 +5,9 @@ define([ 'jquery', 'underscore', 'backbone', 'router', 'i18n', 'backbone-validat
 		debug : true,
 		detectLngQS: 'lang',
 		fallbackLng : 'en',
-		resGetPath : 'locales/__lng__/__ns__.json'
+		resGetPath : 'locales/__lng__/__ns__.json',
+		useDataAttrOptions : true,
+		optionsAttr : 'i18n-options'
 	}, function() {
 		// i18next is done asynchronously; this is the callback function
 		$("body").i18n();
@@ -16,15 +18,15 @@ define([ 'jquery', 'underscore', 'backbone', 'router', 'i18n', 'backbone-validat
 		var validationMessages = {};
 		validationMessages.required = 'validation.required';
 		validationMessages.acceptance = 'validation.acceptance';
-		validationMessages.min = 'validation.min';
-		validationMessages.max = 'validation.max';
-		validationMessages.range = 'validation.range';
-		validationMessages.length = 'validation.length';
-		validationMessages.minLength = 'validation.minLength';
-		validationMessages.maxLength = 'validation.maxLength';
-		validationMessages.rangeLength = 'validation.rangeLength';
-		validationMessages.oneOf = 'validation.oneOf';
-		validationMessages.equalTo = 'validation.equalTo';
+		validationMessages.min = 'validation.min|#|{"min":{1}}';
+		validationMessages.max = 'validation.max|#|{"max":{1}}';
+		validationMessages.range = 'validation.range|#|{"min":{1},"max":{2}}';
+		validationMessages.length = 'validation.length|#|{"length":{1}}';
+		validationMessages.minLength = 'validation.minLength|#|{"minLength":{1}}';
+		validationMessages.maxLength = 'validation.maxLength|#|{"maxLength":{1}}';
+		validationMessages.rangeLength = 'validation.rangeLength|#|{"min":{1},"max":{2}}';
+		validationMessages.oneOf = 'validation.oneOf|#|{"oneOf":{1}}';
+		validationMessages.equalTo = 'validation.equalTo|#|{"equalTo":{1}}';
 		validationMessages.digits = 'validation.digits';
 		validationMessages.number = 'validation.number';
 		validationMessages.email = 'validation.email';
@@ -47,7 +49,16 @@ define([ 'jquery', 'underscore', 'backbone', 'router', 'i18n', 'backbone-validat
 			var $el = view.$('[id=' + attr + ']'); 
 			var $group = $el.closest('.input-group');
 			$el.addClass('has-error');
-			$group.find('.help-block').addClass('has-error').html(i18n.t(error)).removeClass('hidden').attr('data-i18n', error);
+
+			var errMessage = error.split('|#|');
+			var options = null;
+			if (errMessage[1]) {
+				options = errMessage[1].replace(/\\/g, '\\')
+			}
+			
+			$group.find('.help-block').addClass('has-error').removeClass('hidden')
+				.html(i18n.t(errMessage[0], JSON.parse(options)))
+				.attr('data-i18n', errMessage[0]).attr('data-i18n-options', options);
 		}
 	});
 
