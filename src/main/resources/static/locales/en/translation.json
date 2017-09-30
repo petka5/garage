@@ -3,7 +3,24 @@
 		"register": "Register",
 		"login": "Login",
 		"username": "Username",
-		"password": "Password"
+		"password": "Password",
+		"forgotPassword": "Forgot password"
+	},
+	"viewSignUp": {
+		"signUp": "Sign Up",
+		"fullName": "Full Name",
+		"username": "Username",
+		"password": "Password",
+		"retypePassword": "Retype Password",
+		"dateOfBirth": "Date of Birth",
+		"DD": "DD",
+		"MM": "MM",
+		"YYYY": "YYYY",
+		"gender": "Gender",
+		"male": "Male",
+		"female": "Female",
+		"country": "Country",
+		"language": "Language"
 	},
 	"validation": {
 		"required": "The field is required",

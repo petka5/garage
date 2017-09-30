@@ -46,9 +46,17 @@ module.exports = function(grunt) {
 			styles : {
 				files : [ {
 					expand : true,
-					cwd : 'src/main/resources/static/css',
+					cwd : 'src/main/resources/static/css/',
 					src : [ '**/*.css' ],
 					dest : 'target/classes/static/css/'
+				} ]
+			},
+			translations: {
+				files : [ {
+					expand : true,
+					cwd : 'src/main/resources/static/locales/',
+					src : [ '**/*.json' ],
+					dest : 'target/classes/static/locales/'
 				} ]
 			}
 		},
@@ -64,6 +72,10 @@ module.exports = function(grunt) {
 			less:{
 				files : [ 'src/main/resources/static/css/**/*.less' ],
 				tasks : [ 'gitinfo', 'less:min', 'copy:styles' ]		
+			},
+			translations:{
+				files : [ 'src/main/resources/static/locales/**/*.json' ],
+				tasks : [ 'copy:translations' ]		
 			}
 		},
 		 gitinfo : {

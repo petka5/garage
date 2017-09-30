@@ -105,6 +105,7 @@ input {
       text-align: center;
       float: left;
       border-radius: 0;
+      font-size: 0.8em;
       &:first-of-type {
         border-top-left-radius: @br;
         border-bottom-left-radius: @br;
@@ -194,7 +195,6 @@ input {
 
 select {
   &:extend(input[type="radio"] + label);
-  height: 3.0em;
   line-height: 2;
   &:first-of-type {
     border-top-left-radius: @br;
@@ -306,5 +306,22 @@ span.has-error {
 }
 .lang{
 	border-radius: 3px;
-	border: solid gray 1px;
+	border: solid @baseColor 1px;
+	color: @color-primary-strong;
 }
+
+.textright{
+	text-align:right;
+}
+
+.textleft{
+	text-align:left;
+}
+.link {
+	&:hover {
+		text-decoration: underline;
+		color: @color-primary;
+		cursor: pointer;
+	}
+}
+

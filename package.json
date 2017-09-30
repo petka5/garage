@@ -1,5 +1,6 @@
 {
   "name": "garage",
+   "version": "0.0.1",
   "dependencies": {
     "grunt": "~0.4",
     "grunt-contrib-clean": "~0.4.0",

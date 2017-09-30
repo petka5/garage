@@ -1,11 +1,12 @@
-define([ 'jquery', 'underscore', 'backbone', 'views/login', 'models/login', 'views/langMenu' ], function($, _, Backbone, LoginView, LoginModel, LangMenuView) {
+define([ 'jquery', 'underscore', 'backbone', 'views/login', 'models/login', 'views/langMenu', 'views/signUp' ], function($, _, Backbone, LoginView, LoginModel,
+		LangMenuView, SignUpView) {
 	var AppRouter = Backbone.Router.extend({
 		routes : {
 			// Define some URL routes
 			'/login' : 'login',
 			// Default
 			'*actions' : 'login'
-		} 
+		}
 	});
 
 	var ViewsFactory = {
@@ -22,6 +23,12 @@ define([ 'jquery', 'underscore', 'backbone', 'views/login', 'models/login', 'vie
 				this.langMenuView = new LangMenuView({});
 			}
 			return this.langMenuView;
+		},
+		signUp : function() {
+			if (!this.signUpView) {
+				this.signUpView = new SignUpView({});
+			}
+			return this.signUpView;
 		}
 	};
 
@@ -32,6 +39,7 @@ define([ 'jquery', 'underscore', 'backbone', 'views/login', 'models/login', 'vie
 			ViewsFactory.login();
 		});
 		ViewsFactory.langMenu();
+		ViewsFactory.signUp();
 		Backbone.history.start();
 	};
 	return {

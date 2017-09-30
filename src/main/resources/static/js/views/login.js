@@ -21,8 +21,15 @@ define(
 									<div class="input-group button">\
 										<input id="login" type="button" data-i18n="[value]viewLogin.login" />\
 									</div>\
-									<div class="input-group button">\
-										<input id="register" type="button" data-i18n="[value]viewLogin.register" />\
+									<div class="col-half">\
+										<div class="input-group textleft link">\
+											<span data-i18n="viewLogin.register"></span>\
+										</div>\
+									</div>\
+									<div class="col-half">\
+										<div class="input-group textright link">\
+											<span data-i18n="viewLogin.forgotPassword"></span>\
+										</div>\
 									</div>\
 								</div>\
 							</div>'),

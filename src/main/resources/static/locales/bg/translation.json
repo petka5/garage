@@ -3,7 +3,24 @@
 		"register": "Регистрация",
 		"login": "Вход",
 		"username": "Потребител",
-		"password": "Парола"
+		"password": "Парола",
+		"forgotPassword": "Забравена парола"
+	},
+	"viewSignUp": {
+		"signUp": "Регистрация",
+		"fullName": "Пълно име",
+		"username": "Потребител",
+		"password": "Парола",
+		"retypePassword": "Повторете паролата",
+		"dateOfBirth": "Дата на раждане",
+		"DD": "ДД",
+		"MM": "ММ",
+		"YYYY": "ГГГГ",
+		"gender": "Пол",
+		"male": "Мъж",
+		"female": "Жена",
+		"country": "Страна",
+		"language": "Език"
 	},
 	"validation": {
 		"required": "Полето е задължително",
