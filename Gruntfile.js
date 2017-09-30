@@ -58,6 +58,14 @@ module.exports = function(grunt) {
 					src : [ '**/*.json' ],
 					dest : 'target/classes/static/locales/'
 				} ]
+			},
+			templates: {
+				files : [ {
+					expand : true,
+					cwd : 'src/main/resources/static/js/templates/',
+					src : [ '**/*.html' ],
+					dest : 'target/classes/static/js/templates/'
+				} ]
 			}
 		},
 		watch : {
@@ -76,6 +84,10 @@ module.exports = function(grunt) {
 			translations:{
 				files : [ 'src/main/resources/static/locales/**/*.json' ],
 				tasks : [ 'copy:translations' ]		
+			},
+			templates:{
+				files : [ 'src/main/resources/static/js/templates/**/*.html' ],
+				tasks : [ 'copy:templates' ]		
 			}
 		},
 		 gitinfo : {
