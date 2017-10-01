@@ -25,8 +25,8 @@ define([ 'jquery', 'underscore', 'backbone', 'router', 'i18n', 'backbone-validat
 		validationMessages.minLength = 'validation.minLength|#|{"minLength":{1}}';
 		validationMessages.maxLength = 'validation.maxLength|#|{"maxLength":{1}}';
 		validationMessages.rangeLength = 'validation.rangeLength|#|{"min":{1},"max":{2}}';
-		validationMessages.oneOf = 'validation.oneOf|#|{"oneOf":{1}}';
-		validationMessages.equalTo = 'validation.equalTo|#|{"equalTo":{1}}';
+		validationMessages.oneOf = 'validation.oneOf';
+		validationMessages.equalTo = 'validation.equalTo';
 		validationMessages.digits = 'validation.digits';
 		validationMessages.number = 'validation.number';
 		validationMessages.email = 'validation.email';

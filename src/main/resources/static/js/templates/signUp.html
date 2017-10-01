@@ -6,6 +6,7 @@
 			<div class="input-icon">
 				<i class="fa fa-user"></i>
 			</div>
+			<span class="help-block hidden"></span>
 		</div>
 		<div class="input-group input-group-icon">
 			<input type="email" id="username" data-i18n="[placeholder]viewSignUp.username" />
@@ -31,13 +32,13 @@
 		<h4 data-i18n="viewSignUp.dateOfBirth"></h4>
 		<div class="input-group">
 			<div class="col-third">
-				<input type="text" data-i18n="[placeholder]viewSignUp.DD" />
+				<input type="text" id="day" data-i18n="[placeholder]viewSignUp.DD" />
 			</div>
 			<div class="col-third">
-				<input type="text" data-i18n="[placeholder]viewSignUp.MM" />
+				<input type="text" id="month" data-i18n="[placeholder]viewSignUp.MM" />
 			</div>
 			<div class="col-third">
-				<input type="text" data-i18n="[placeholder]viewSignUp.YYYY" />
+				<input type="text" id="year" data-i18n="[placeholder]viewSignUp.YYYY" />
 			</div>
 		</div>
 		<h4 data-i18n="viewSignUp.gender"></h4>
@@ -46,19 +47,34 @@
 			<label for="gender-male" data-i18n="viewSignUp.male"></label>
 			<input type="radio" name="gender" value="female" id="gender-female" />
 			<label for="gender-female" data-i18n="viewSignUp.female"></label>
+			<span class="help-block hidden"></span>
 		</div>
-		<div class="input-group">
-			<h4 data-i18n="viewSignUp.country"></h4>
-			<select>
+		<h4 data-i18n="viewSignUp.country"></h4>
+		<div class="input-group input-group-icon">
+			<select id="country">
+				<option></option>
 				<option>01 Jan</option>
 				<option>02 Jan</option>
 			</select>
+			<div class="input-icon">
+				<i class="fa fa-globe"></i>
+			</div>
+			<span class="help-block hidden"></span>
 		</div>
-		<div class="input-group">
-			<h4 data-i18n="viewSignUp.language"></h4>
-			<select>
+		<h4 data-i18n="viewSignUp.language"></h4>
+		<div class="input-group input-group-icon">
+			<select id="language">
+				<option></option>
 				<option>01 Jan</option>
 				<option>02 Jan</option>
 			</select>
+			<div class="input-icon">
+				<i class="fa fa-language"></i>
+			</div>
+			<span class="help-block hidden"></span>
+		</div>
+		<div class="input-group button">
+			<input id="signUp" type="button" data-i18n="[value]viewSignUp.register" />
 		</div>
 	</div>
+</div>

@@ -1,5 +1,5 @@
-define([ 'jquery', 'underscore', 'backbone', 'views/login', 'models/login', 'views/langMenu', 'views/signUp' ], function($, _, Backbone, LoginView, LoginModel,
-		LangMenuView, SignUpView) {
+define([ 'jquery', 'underscore', 'backbone', 'models/login', 'models/signUp', 'views/login', 'views/langMenu', 'views/signUp' ], function($, _, Backbone,
+		LoginModel, SignUpModel, LoginView, LangMenuView, SignUpView) {
 	var AppRouter = Backbone.Router.extend({
 		routes : {
 			// Define some URL routes
@@ -26,7 +26,9 @@ define([ 'jquery', 'underscore', 'backbone', 'views/login', 'models/login', 'vie
 		},
 		signUp : function() {
 			if (!this.signUpView) {
-				this.signUpView = new SignUpView({});
+				this.signUpView = new SignUpView({
+					model: new SignUpModel()
+				});
 			}
 			return this.signUpView;
 		}

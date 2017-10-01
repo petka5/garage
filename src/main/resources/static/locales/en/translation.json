@@ -20,7 +20,8 @@
 		"male": "Male",
 		"female": "Female",
 		"country": "Country",
-		"language": "Language"
+		"language": "Language",
+		"register": "Register"
 	},
 	"validation": {
 		"required": "The field is required",
@@ -33,7 +34,7 @@
 		"maxLength": "The field must be at most __maxLength__ characters",
 		"rangeLength": "The field must be between __min__ and  __max__ characters",
 		"oneOf": "The field must be one of: __oneOf__",
-		"equalTo": "The field must be the same as __equalTo__",
+		"equalTo": "The field doesn't match",
 		"digits": "The field must only contain digits",
 		"number": "The field must be a number",
 		"email": "The field must be a valid email",

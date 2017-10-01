@@ -194,8 +194,15 @@ input {
 }
 
 select {
-  &:extend(input[type="radio"] + label);
+  &:extend(input[type="text"] + label);
   line-height: 2;
+  width:100%;
+  background-color: @grey-lightest;
+  border: 1px solid @grey;
+  padding: 1em;
+  &.has-error {
+	border-color: @color-error;
+  }
   &:first-of-type {
     border-top-left-radius: @br;
     border-bottom-left-radius: @br;
@@ -216,6 +223,7 @@ select {
 }
 
 .input-group {
+	position: relative;
 	margin-bottom: 1em;
 	.clearfix ();
 }
@@ -230,6 +238,9 @@ span.has-error {
 .input-group-icon {
   position: relative;
   input {
+    padding-left: 4.0em;
+  }
+  select {
     padding-left: 4.0em;
   }
   .input-icon {
