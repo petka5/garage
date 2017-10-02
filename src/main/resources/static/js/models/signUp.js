@@ -18,11 +18,23 @@ define([ 'underscore', 'backbone' ], function(_, Backbone) {
 				required : true,
 				equalTo : 'password'
 			},
+			day : {
+				required : true,
+				range : [1,31],
+			},
+			month : {
+				required : true,
+				range : [1,12],			
+			},
+			year : {
+				required : true,
+				range : [1930,2018],			
+			},
 			birthDay : {
 
 			},
 			gender : {
-				oneOf : [ "male" ,"female" ]
+				required : true,
 			},
 			country : {
 				required : true,

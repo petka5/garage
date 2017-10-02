@@ -10,7 +10,7 @@ require.config({
 		underscore : 'libs/underscore',
 		backbone : 'libs/backbone',
 		'backbone-validation': 'libs/backbone-validation-amd',
-		i18n : 'libs/i18next.amd.withJQuery.min',
+		i18n : 'libs/i18next.amd.withJQuery',
 		text : 'libs/text'
 	},
     shim: {

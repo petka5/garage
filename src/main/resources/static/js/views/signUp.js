@@ -1,4 +1,4 @@
-define([ 'jquery', 'underscore', 'backbone', 'backbone-validation', 'text!templates/signUp.html' ], function($, _, Backbone, Validator, signUpTemplate) {
+define([ 'jquery', 'underscore', 'backbone', 'backbone-validation', 'collections/languages', 'text!templates/signUp.html' ], function($, _, Backbone, Validator, LanguageCollection, signUpTemplate) {
 	var SignUpView = Backbone.View.extend({
 		template : _.template(signUpTemplate),
 		el : $('#signUp'),
@@ -10,6 +10,8 @@ define([ 'jquery', 'underscore', 'backbone', 'backbone-validation', 'text!templa
 
 		initialize : function() {
 			_.bindAll(this, "changed");
+			var self = this;
+			this.languages = new LanguageCollection();
 			this.render();
 			Backbone.Validation.bind(this);
 		},
@@ -29,6 +31,7 @@ define([ 'jquery', 'underscore', 'backbone', 'backbone-validation', 'text!templa
 
 		render : function() {
 			var data = {};
+			data.languages = this.languages.toJSON()
 			var compiledTemplate = _.template(this.template(data));
 			// Append our compiled template to this Views "el"
 			this.$el.append(compiledTemplate);

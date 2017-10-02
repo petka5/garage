@@ -23,7 +23,7 @@ define([ 'jquery', 'underscore', 'backbone', 'backbone-validation', 'i18n', 'col
 							self.render();
 						}
 					});
-					// this.render();
+					//this.render();
 				},
 
 				render : function() {

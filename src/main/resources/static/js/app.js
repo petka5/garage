@@ -40,15 +40,24 @@ define([ 'jquery', 'underscore', 'backbone', 'router', 'i18n', 'backbone-validat
 
 	_.extend(Backbone.Validation.callbacks, {
 		valid : function(view, attr, selector) {
-			var $el = view.$('[id=' + attr + ']'); 
+			var $el = view.$('[id=' + attr + ']');
+			if($el.length == 0){
+				$el = view.$('[name=' + attr + ']');
+				$el.closest('.input-wrapper').removeClass('has-error');
+			}
+			
 			var $group = $el.closest('.input-group');
 			$el.removeClass('has-error');
 			$group.find('.help-block').removeClass('has-error').html('').addClass('hidden').removeAttr('data-i18n');
 		},
 		invalid : function(view, attr, error, selector) {
 			var $el = view.$('[id=' + attr + ']'); 
-			var $group = $el.closest('.input-group');
-			$el.addClass('has-error');
+			if($el.length == 0){
+				$el = view.$('[name=' + attr + ']');
+				$el.closest('.input-wrapper').addClass('has-error');
+			}else{				
+				$el.addClass('has-error');
+			}
 
 			var errMessage = error.split('|#|');
 			var options = null;
@@ -56,6 +65,7 @@ define([ 'jquery', 'underscore', 'backbone', 'router', 'i18n', 'backbone-validat
 				options = errMessage[1].replace(/\\/g, '\\')
 			}
 			
+			var $group = $el.closest('.input-group');
 			$group.find('.help-block').addClass('has-error').removeClass('hidden')
 				.html(i18n.t(errMessage[0], JSON.parse(options)))
 				.attr('data-i18n', errMessage[0]).attr('data-i18n-options', options);

@@ -228,7 +228,22 @@ select {
 	.clearfix ();
 }
 
-span.has-error {
+.input-wrapper {
+	width: 100%;
+	display: inline-block;
+	background-color: @grey-lightest;
+	border: 1px solid @grey;
+	border-radius: 3px;
+}
+.input-wrapper-group {
+	display: inline-block;
+}
+
+div.has-error {
+	border-color: @color-error;
+}
+
+span.has-error{
 	position: absolute;
 	font-size: 0.8em;
 	left: 2em;

@@ -31,22 +31,27 @@
 		</div>
 		<h4 data-i18n="viewSignUp.dateOfBirth"></h4>
 		<div class="input-group">
-			<div class="col-third">
-				<input type="text" id="day" data-i18n="[placeholder]viewSignUp.DD" />
+			<div class="input-wrapper-group">
+				<div class="col-third">
+					<input type="text" id="day" data-i18n="[placeholder]viewSignUp.DD" />
+				</div>
+				<div class="col-third">
+					<input type="text" id="month" data-i18n="[placeholder]viewSignUp.MM" />
+				</div>
+				<div class="col-third">
+					<input type="text" id="year" data-i18n="[placeholder]viewSignUp.YYYY" />
+				</div>
 			</div>
-			<div class="col-third">
-				<input type="text" id="month" data-i18n="[placeholder]viewSignUp.MM" />
-			</div>
-			<div class="col-third">
-				<input type="text" id="year" data-i18n="[placeholder]viewSignUp.YYYY" />
-			</div>
+			<span class="help-block hidden"></span>
 		</div>
 		<h4 data-i18n="viewSignUp.gender"></h4>
 		<div class="input-group">
-			<input type="radio" name="gender" value="male" id="gender-male" />
-			<label for="gender-male" data-i18n="viewSignUp.male"></label>
-			<input type="radio" name="gender" value="female" id="gender-female" />
-			<label for="gender-female" data-i18n="viewSignUp.female"></label>
+			<div class="input-wrapper">
+				<input type="radio" name="gender" value="male" id="gender-male" />
+				<label for="gender-male" data-i18n="viewSignUp.male"></label>
+				<input type="radio" name="gender" value="female" id="gender-female" />
+				<label for="gender-female" data-i18n="viewSignUp.female"></label>
+			</div>
 			<span class="help-block hidden"></span>
 		</div>
 		<h4 data-i18n="viewSignUp.country"></h4>
@@ -65,8 +70,9 @@
 		<div class="input-group input-group-icon">
 			<select id="language">
 				<option></option>
-				<option>01 Jan</option>
-				<option>02 Jan</option>
+				<% _.each(languages, function(lang) { %>
+					<option value="<%= lang.lang %>"><%= lang.name %></option>
+				<% });%>
 			</select>
 			<div class="input-icon">
 				<i class="fa fa-language"></i>
