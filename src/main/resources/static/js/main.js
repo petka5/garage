@@ -6,12 +6,12 @@
 // There usage will become more apparent further along in the tutorial.
 require.config({
 	paths : {
-		jquery : 'libs/jquery-3.2.1',
-		underscore : 'libs/underscore',
-		backbone : 'libs/backbone',
-		'backbone-validation': 'libs/backbone-validation-amd',
-		i18n : 'libs/i18next.amd.withJQuery',
-		text : 'libs/text'
+		jquery : 'libs/jquery/dist/jquery.min',
+		underscore : 'libs/underscore/underscore-min',
+		backbone : 'libs/backbone/backbone-min',
+		'backbone-validation': 'libs/backbone.validation/dist/backbone-validation-amd-min',
+		i18n : 'libs/i18next/i18next.amd.withJQuery',
+		text : 'libs/text/text'
 	},
     shim: {
         'backbone-validation': ['backbone']
