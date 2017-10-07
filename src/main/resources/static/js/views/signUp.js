@@ -7,11 +7,13 @@ define([ 'jquery', 'underscore', 'backbone', 'backbone-validation', 'collections
 			"change select" : "changed",
 			'click #signUp' : 'signUp'
 		},
-
+// http://jsforallof.us/2014/10/17/backbone-series-handling-asynchronous-data/
 		initialize : function() {
 			_.bindAll(this, "changed");
 			var self = this;
 			this.languages = new LanguageCollection();
+		    this.listenTo(this.languages, "add", this.addLang);
+			this.languages.fetch();
 			this.render();
 			Backbone.Validation.bind(this);
 		},
@@ -28,7 +30,9 @@ define([ 'jquery', 'underscore', 'backbone', 'backbone-validation', 'collections
 			this.model.set(data);
 			this.model.isValid(validateTarget);
 		},
-
+		addLang : function(lang){
+			$('#language').append($('<option>', {value: lang.get('lang'), text:lang.get('name')}));
+		},
 		render : function() {
 			var data = {};
 			data.languages = this.languages.toJSON()
@@ -44,25 +48,9 @@ define([ 'jquery', 'underscore', 'backbone', 'backbone-validation', 'collections
 		signUp : function(e){
 			e.preventDefault();
 			if (this.model.isValid(true)) {
-				// this.model.save();
+				this.model.save();
 				alert('Great Success!');
 			}
-			this.model.save();
-			/*$.ajax({
-				type : 'POST',
-				url : 'sign-up',
-				dataType : 'json',
-				contentType : 'application/json',
-				data : JSON.stringify(this.model),
-				statusCode : {
-					200 : function() {
-						Backbone.Events.trigger("register:success");
-					}
-				},
-				error : function() {
-					// Add appropriate error message
-				}
-			});*/
 		}
 	});
 	return SignUpView;
