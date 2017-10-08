@@ -1,0 +1,85 @@
+define([ 'jquery', 'underscore', 'backbone', 'backbone-validation', 'marionette', 'i18n', 'views/welcomeView' ],
+
+// https://github.com/nuragic/marionette-bootstrap/blob/master/app/index.html
+function($, _, Backbone, Validator, Marionette, i18n, WelcomeView) {
+
+	i18n.init({
+		// lng : 'en',
+		debug : true,
+		detectLngQS : 'lang',
+		fallbackLng : 'en',
+		resGetPath : 'locales/__lng__/__ns__.json',
+		useDataAttrOptions : true,
+		optionsAttr : 'i18n-options'
+	}, function() {
+		// i18next is done asynchronously; this is the callback function
+		$("body").i18n();
+	});
+
+	_.extend(Backbone.Validation.callbacks, {
+		valid : function(view, attr, selector) {
+			var $el = view.$('[id=' + attr + ']');
+			if ($el.length == 0) {
+				$el = view.$('[name=' + attr + ']');
+				$el.closest('.input-wrapper').removeClass('has-error');
+			}
+
+			var $group = $el.closest('.input-group');
+			$el.removeClass('has-error');
+			$group.find('.help-block').removeClass('has-error').html('').addClass('hidden').removeAttr('data-i18n');
+		},
+		invalid : function(view, attr, error, selector) {
+			var $el = view.$('[id=' + attr + ']');
+			if ($el.length == 0) {
+				$el = view.$('[name=' + attr + ']');
+				$el.closest('.input-wrapper').addClass('has-error');
+			} else {
+				$el.addClass('has-error');
+			}
+
+			var errMessage = error.split('|#|');
+			var options = null;
+			if (errMessage[1]) {
+				options = errMessage[1].replace(/\\/g, '\\')
+			}
+
+			var $group = $el.closest('.input-group');
+			$group.find('.help-block').addClass('has-error').removeClass('hidden').html(i18n.t(errMessage[0], JSON.parse(options))).attr('data-i18n',
+					errMessage[0]).attr('data-i18n-options', options);
+		}
+	});
+
+	var app = new Marionette.Application({
+		
+		onBeforeStart : function(options) {
+			var validationMessages = {};
+			validationMessages.required = 'validation.required';
+			validationMessages.acceptance = 'validation.acceptance';
+			validationMessages.min = 'validation.min|#|{"min":{1}}';
+			validationMessages.max = 'validation.max|#|{"max":{1}}';
+			validationMessages.range = 'validation.range|#|{"min":{1},"max":{2}}';
+			validationMessages.length = 'validation.length|#|{"length":{1}}';
+			validationMessages.minLength = 'validation.minLength|#|{"minLength":{1}}';
+			validationMessages.maxLength = 'validation.maxLength|#|{"maxLength":{1}}';
+			validationMessages.rangeLength = 'validation.rangeLength|#|{"min":{1},"max":{2}}';
+			validationMessages.oneOf = 'validation.oneOf';
+			validationMessages.equalTo = 'validation.equalTo';
+			validationMessages.digits = 'validation.digits';
+			validationMessages.number = 'validation.number';
+			validationMessages.email = 'validation.email';
+			validationMessages.url = 'validation.url';
+			validationMessages.inlinePattern = 'validation.inlinePattern';
+
+			_.extend(Backbone.Validation.messages, validationMessages);
+		},
+		
+		onStart : function(options) {
+			Backbone.history.start();
+			var welcomeView = new WelcomeView({});
+			welcomeView.render();
+		}
+	});
+
+	app.start();
+
+});

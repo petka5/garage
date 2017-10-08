@@ -1,4 +1,6 @@
-define([ 'underscore', 'backbone' ], function(_, Backbone) {
+define([ 'underscore', 'backbone' ], 
+// function		
+function(_, Backbone) {
 	var LanguageModel = Backbone.Model.extend({
 	
 	});

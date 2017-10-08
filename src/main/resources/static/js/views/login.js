@@ -1,9 +1,12 @@
 // Using the Require.js text! plugin, we are loaded raw text
 // which will be used as our views primary template
-define([ 'jquery', 'underscore', 'backbone', 'i18n', 'text!templates/login.html' ], function($, _, Backbone, i18n, loginTemplate) {
-	var LoginView = Backbone.View.extend({
+define([ 'jquery', 'underscore', 'backbone', 'marionette', 'i18n', 'models/login','text!templates/login.html' ], 
+
+// function
+function($, _, Backbone, Marionette, i18n, LoginModel, loginTemplate) {
+	var LoginView = Marionette.View.extend({
 		template : _.template(loginTemplate),
-		el : $('#menu'),
+		//el : $('#login'),
 		events : {
 			"change input" : "changed",
 			'click #login' : 'login',
@@ -12,7 +15,7 @@ define([ 'jquery', 'underscore', 'backbone', 'i18n', 'text!templates/login.html'
 
 		initialize : function() {
 			_.bindAll(this, "changed");
-			this.render();
+			//this.render();
 			Backbone.Validation.bind(this);
 			Backbone.Events.on('login:success', this.remove, this);
 		},

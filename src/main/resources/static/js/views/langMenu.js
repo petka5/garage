@@ -1,51 +1,45 @@
-define([ 'jquery', 'underscore', 'backbone', 'backbone-validation', 'i18n', 'collections/languages', 'models/language', 'text!templates/langMenu.html' ],
-		function($, _, Backbone, Validator, i18n, LanguageCollection, Language, langMenuTemplate) {
-			var LangMenuView = Backbone.View.extend({
-				template : _.template(langMenuTemplate),
-				el : $('#langMenu'),
-				events : {
-					'click .lang' : 'changeLanguage'
-				},
+define([ 'jquery', 'underscore', 'backbone', 'marionette', 'backbone-validation', 'i18n', 'collections/languages', 'models/language',
+		'text!templates/langMenu.html' ],
 
-				changeLanguage : function(ev) {
-					i18n.init({
-						lng : $(ev.target).attr('data-lang')
-					}, function(t) {
-						$(document).i18n();
-					});
-				},
+// function
+function($, _, Backbone, Marionette, Validator, i18n, LanguageCollection, Language, langMenuTemplate) {
+	var LangMenuView = Marionette.View.extend({
+		template : _.template(langMenuTemplate),
+		events : {
+			'click .lang' : 'changeLanguage'
+		},
 
-				initialize : function() {
-					var self = this;
-					this.languages = new LanguageCollection();
-					this.languages.fetch({
-						success : function() {
-							self.render();
-						}
-					});
-					//this.render();
-				},
+		changeLanguage : function(ev) {
+			i18n.setLng($(ev.target).attr('data-lang'), function(){
+				$('body').i18n();
+			});
+		},
 
-				render : function() {
-					// Using Underscore we can compile our template with
-					// data
-					var data = {};
-					// var compiledTemplate =
-					// _.template(this.template(data));
-					var compiledTemplate = _.template(this.template({
-						languages : this.languages.toJSON()
-					}));
-					// Append our compiled template to this Views "el"
-					this.$el.append(compiledTemplate);
-				},
-
-				remove : function() {
-					this.$el.empty().off();
-					return Backbone.View.prototype.remove.apply(this, arguments);
-					// off to unbind the events
-					this.stopListening();
+		initialize : function() {
+			var self = this;
+			this.languages = new LanguageCollection();
+			this.languages.fetch({
+				success : function() {
+					self.render();
 				}
 			});
-			// Our module now returns our view
-			return LangMenuView;
-		});
+		},
+
+		render : function() {
+			var compiledTemplate = _.template(this.template({
+				languages : this.languages.toJSON()
+			}));
+			// Append our compiled template to this Views "el"
+			this.$el.append(compiledTemplate);
+		},
+
+		remove : function() {
+			this.$el.empty().off();
+			return Backbone.View.prototype.remove.apply(this, arguments);
+			// off to unbind the events
+			this.stopListening();
+		}
+	});
+	// Our module now returns our view
+	return LangMenuView;
+});

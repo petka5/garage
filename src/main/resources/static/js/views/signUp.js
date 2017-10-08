@@ -1,20 +1,21 @@
-define([ 'jquery', 'underscore', 'backbone', 'backbone-validation', 'collections/languages', 'text!templates/signUp.html' ], function($, _, Backbone, Validator, LanguageCollection, signUpTemplate) {
-	var SignUpView = Backbone.View.extend({
+define([ 'jquery', 'underscore', 'backbone', 'marionette', 'backbone-validation', 'collections/languages', 'text!templates/signUp.html' ], function($, _,
+		Backbone, Marionette, Validator, LanguageCollection, signUpTemplate) {
+	// function
+	var SignUpView = Marionette.View.extend({
 		template : _.template(signUpTemplate),
-		el : $('#signUp'),
+		// el : $('#signUp'),
 		events : {
 			"change input" : "changed",
 			"change select" : "changed",
 			'click #signUp' : 'signUp'
 		},
-// http://jsforallof.us/2014/10/17/backbone-series-handling-asynchronous-data/
+		// http://jsforallof.us/2014/10/17/backbone-series-handling-asynchronous-data/
 		initialize : function() {
 			_.bindAll(this, "changed");
 			var self = this;
 			this.languages = new LanguageCollection();
-		    this.listenTo(this.languages, "add", this.addLang);
+			this.listenTo(this.languages, "add", this.addLang);
 			this.languages.fetch();
-			this.render();
 			Backbone.Validation.bind(this);
 		},
 
@@ -30,9 +31,14 @@ define([ 'jquery', 'underscore', 'backbone', 'backbone-validation', 'collections
 			this.model.set(data);
 			this.model.isValid(validateTarget);
 		},
-		addLang : function(lang){
-			$('#language').append($('<option>', {value: lang.get('lang'), text:lang.get('name')}));
+		
+		addLang : function(lang) {
+			$('#language').append($('<option>', {
+				value : lang.get('lang'),
+				text : lang.get('name')
+			}));
 		},
+		
 		render : function() {
 			var data = {};
 			data.languages = this.languages.toJSON()
@@ -44,8 +50,8 @@ define([ 'jquery', 'underscore', 'backbone', 'backbone-validation', 'collections
 		remove : function() {
 
 		},
-		
-		signUp : function(e){
+
+		signUp : function(e) {
 			e.preventDefault();
 			if (this.model.isValid(true)) {
 				this.model.save();
