@@ -1,0 +1,15 @@
+{
+	"views": {
+		"login": {
+			"login": "Login",
+			"username": "Username",
+			"password": "Password",
+			"register": "Register"
+		}
+	},
+	"validation": {
+		"field.required": "The field is required"
+	},
+	"views.main.Splendid!": "Splendid!",
+	"directives.language-select.Language": "Language"
+}

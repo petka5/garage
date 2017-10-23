@@ -1,0 +1,15 @@
+{
+	"views": {
+		"login": {
+			"login": "Вход",
+			"username": "Потребител",
+			"password": "Парола",
+			"register": "Регистрация"
+		}
+	},
+	"validation": {
+		"field.required": "Полето е задължително"
+	},
+	"views.main.Splendid!": "Прекрасно!",
+	"directives.language-select.Language": "Език"
+}

@@ -1,78 +1,100 @@
-// Request router.js
-define([ 'jquery', 'underscore', 'backbone', 'router', 'i18n', 'backbone-validation' ], function($, _, Backbone, Router, i18n, Validator) {
-	i18n.init({
-		//lng : 'en',
-		debug : true,
-		detectLngQS: 'lang',
-		fallbackLng : 'en',
-		resGetPath : 'locales/__lng__/__ns__.json',
-		useDataAttrOptions : true,
-		optionsAttr : 'i18n-options'
-	}, function() {
-		// i18next is done asynchronously; this is the callback function
-		$("body").i18n();
-	});
+define(function(require) {
+	'use strict';
+	// https://sachinchoolur.github.io/angular-flash/
+	// https://github.com/angular-ui/ui-router/wiki
+	// http://jasonwatmore.com/post/2015/03/10/angularjs-user-registration-and-login-example-tutorial
+	// http://jonathancreamer.com/require-js-packages-for-building-large-scale-angular-applications/
+	// https://www.startersquad.com/blog/angularjs-requirejs/
+	// https://angular.io/guide/quickstart
+	// https://angular-translate.github.io/
+	// https://scotch.io/tutorials/internationalization-of-angularjs-applications
+	// https://github.com/malyw/angular-translate-yeoman/blob/master/app/views/main.html
+	
+	// https://github.com/emalikterzi/angular-owl-carousel-2
+	// ########################################################
+	// https://spring.io/blog/2016/11/28/going-reactive-with-spring-data
+	// ########################################################		
+	var angular = require('angular');
+	require('ngRoute');
+	require('ngCookies');
+	require('ngSanitize');
+	require('uiRouter');
+	require('ngSanitize');
+	require('ngFlash');
+	
+	require('pascalprecht.translate');
+	require('angular-translate-starage-cookie');
+	require('angular-translate-storage-local');
+	require('angular-dynamic-locale');
+	require('angular-translate-loader-static-files');
 	
 
-	var initialize = function() {
-		var validationMessages = {};
-		validationMessages.required = 'validation.required';
-		validationMessages.acceptance = 'validation.acceptance';
-		validationMessages.min = 'validation.min|#|{"min":{1}}';
-		validationMessages.max = 'validation.max|#|{"max":{1}}';
-		validationMessages.range = 'validation.range|#|{"min":{1},"max":{2}}';
-		validationMessages.length = 'validation.length|#|{"length":{1}}';
-		validationMessages.minLength = 'validation.minLength|#|{"minLength":{1}}';
-		validationMessages.maxLength = 'validation.maxLength|#|{"maxLength":{1}}';
-		validationMessages.rangeLength = 'validation.rangeLength|#|{"min":{1},"max":{2}}';
-		validationMessages.oneOf = 'validation.oneOf';
-		validationMessages.equalTo = 'validation.equalTo';
-		validationMessages.digits = 'validation.digits';
-		validationMessages.number = 'validation.number';
-		validationMessages.email = 'validation.email';
-		validationMessages.url = 'validation.url';
-		validationMessages.inlinePattern = 'validation.inlinePattern';
 
-		_.extend(Backbone.Validation.messages, validationMessages);
-		// Pass in our Router module and call it's initialize function
-		Router.initialize();
-	}
+	var app = angular.module('app', [ 'ngRoute', 'ngCookies', 'angular-flash.service', 'angular-flash.flash-alert-directive', 'ui.router', 'ngSanitize',
+		'pascalprecht.translate', 'tmh.dynamicLocale' ]);
 
-	_.extend(Backbone.Validation.callbacks, {
-		valid : function(view, attr, selector) {
-			var $el = view.$('[id=' + attr + ']');
-			if($el.length == 0){
-				$el = view.$('[name=' + attr + ']');
-				$el.closest('.input-wrapper').removeClass('has-error');
+	
+	app.init = function() {
+		angular.bootstrap(document, [ 'app' ]);
+	};
+	
+	app.constant('LOCALES', {
+	    'locales': {
+	        'bg_BG': 'Български',
+	        'en_US': 'English'
+	    },
+	    'preferredLocale': 'en_US'
+	});
+	
+	
+    //app.config.$inject = ['$routeProvider', '$locationProvider'];
+    //function config($routeProvider, $locationProvider) {
+    app.config(function($urlRouterProvider, $stateProvider) {
+    	$stateProvider.state('login', {
+			url : '/login',
+			views : {
+				'loginView' : {
+					controller : 'LoginController',
+					templateUrl : 'js/login/login.view.html',
+					controllerAs : 'vm'
+				}
 			}
-			
-			var $group = $el.closest('.input-group');
-			$el.removeClass('has-error');
-			$group.find('.help-block').removeClass('has-error').html('').addClass('hidden').removeAttr('data-i18n');
-		},
-		invalid : function(view, attr, error, selector) {
-			var $el = view.$('[id=' + attr + ']'); 
-			if($el.length == 0){
-				$el = view.$('[name=' + attr + ']');
-				$el.closest('.input-wrapper').addClass('has-error');
-			}else{				
-				$el.addClass('has-error');
-			}
+		}).state('register',{
+			url : '/register',
+			views : {
+				'loginView' : {
+					controller : 'LoginController',
+					templateUrl : 'js/register/register.view.html',
+					controllerAs : 'vm'
+				}
+			}	
+		});
+    });  
+    	
+	// Angular Translate
+	app.config(function($translateProvider) {
+		// warns about missing translates
+		$translateProvider.useMissingTranslationHandlerLog();
+		$translateProvider.useSanitizeValueStrategy('escape');
+		$translateProvider.useStaticFilesLoader({
+			prefix : 'js/locales/locale-',
+			suffix : '.json'
+		});
 
-			var errMessage = error.split('|#|');
-			var options = null;
-			if (errMessage[1]) {
-				options = errMessage[1].replace(/\\/g, '\\')
-			}
-			
-			var $group = $el.closest('.input-group');
-			$group.find('.help-block').addClass('has-error').removeClass('hidden')
-				.html(i18n.t(errMessage[0], JSON.parse(options)))
-				.attr('data-i18n', errMessage[0]).attr('data-i18n-options', options);
-		}
+		$translateProvider.preferredLanguage("en_US");
+		$translateProvider.useLocalStorage();
 	});
 
-	return {
-		initialize : initialize
-	};
+	app.config(function(tmhDynamicLocaleProvider) {
+		tmhDynamicLocaleProvider.localeLocationPattern('js/libs/angular-i18n/angular-locale_{{locale}}.js');
+	});
+/*
+ * $routeProvider .when('/login', { controller: 'LoginController', templateUrl:
+ * 'js/login/login.view.html', controllerAs: 'vm' })
+ * 
+ * .otherwise({ redirectTo: '/login' });
+ */
+    //});
+
+	return app;
 });

@@ -26,12 +26,12 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-		copy : {
+		sync : {
 			js : {
 				files : [ {
 					expand : true,
 					cwd : 'src/main/resources/static/js/',
-					src : [ '**/*.js' ],
+					src : [ '**/*.js', '!libs/**' ],
 					dest : 'target/classes/static/js/'
 				} ]
 			},
@@ -54,9 +54,9 @@ module.exports = function(grunt) {
 			translations: {
 				files : [ {
 					expand : true,
-					cwd : 'src/main/resources/static/locales/',
+					cwd : 'src/main/resources/static/js/locales/',
 					src : [ '**/*.json' ],
-					dest : 'target/classes/static/locales/'
+					dest : 'target/classes/static/js/locales/'
 				} ]
 			},
 			templates: {
@@ -70,24 +70,24 @@ module.exports = function(grunt) {
 		},
 		watch : {
 			js : {
-				files : [ 'src/main/resources/static/**/*.js' ],
-				tasks : [ 'copy:js' ]
+				files : [ 'src/main/resources/static/**/*.js','!src/main/resources/static/js/libs/**','!src/main/resources/static/old/**' ],
+				tasks : [ 'sync:js' ]
 			},
 			html:{
-				files : [ 'src/main/resources/static/**/*.html' ],
-				tasks : [ 'copy:html' ]		
+				files : [ 'src/main/resources/static/**/*.html','!src/main/resources/static/js/libs/**','!src/main/resources/static/old/**' ],
+				tasks : [ 'sync:html' ]		
 			},
 			less:{
-				files : [ 'src/main/resources/static/css/**/*.less' ],
-				tasks : [ 'gitinfo', 'less:min', 'copy:styles' ]		
+				files : [ 'src/main/resources/static/css/**/*.less','!src/main/resources/static/js/libs/**','!src/main/resources/static/old/**' ],
+				tasks : [ 'gitinfo', 'less:min', 'sync:styles' ]		
 			},
 			translations:{
-				files : [ 'src/main/resources/static/locales/**/*.json' ],
-				tasks : [ 'copy:translations' ]		
+				files : [ 'src/main/resources/static/js/locales/**/*.json','!src/main/resources/static/js/libs/**','!src/main/resources/static/old/**' ],
+				tasks : [ 'sync:translations' ]		
 			},
 			templates:{
-				files : [ 'src/main/resources/static/js/templates/**/*.html' ],
-				tasks : [ 'copy:templates' ]		
+				files : [ 'src/main/resources/static/js/templates/**/*.html','!src/main/resources/static/js/libs/**','!src/main/resources/static/old/**' ],
+				tasks : [ 'sync:templates' ]		
 			}
 		},
 		 gitinfo : {
@@ -103,6 +103,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-run');
 	grunt.loadNpmTasks('grunt-gitinfo');
+	grunt.loadNpmTasks('grunt-sync');
 	
 	grunt.registerTask("startMongo", [ "run:mongo" ]);
 	grunt.registerTask("default", [ "watch" ]);
