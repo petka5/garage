@@ -6,6 +6,7 @@ require.config({
 		ngSanitize : 'libs/angular-sanitize/angular-sanitize',
 		uiRouter : 'libs/angular-ui-router/release/angular-ui-router',
 		ngFlash : 'libs/angular-flash/dist/angular-flash',
+		ngMessages : 'libs/angular-messages/angular-messages',
 		'pascalprecht.translate' : 'libs/angular-translate/angular-translate',
 		'angular-translate-starage-cookie' : 'libs/angular-translate-storage-cookie/angular-translate-storage-cookie',
 		'angular-translate-storage-local' : 'libs/angular-translate-storage-local/angular-translate-storage-local',
@@ -32,6 +33,9 @@ require.config({
 			deps : [ "angular" ]
 		},
 		ngFlash : {
+			deps : [ "angular" ]
+		},
+		ngMessages : {
 			deps : [ "angular" ]
 		},
 		'pascalprecht.translate': {

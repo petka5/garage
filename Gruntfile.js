@@ -70,23 +70,23 @@ module.exports = function(grunt) {
 		},
 		watch : {
 			js : {
-				files : [ 'src/main/resources/static/**/*.js','!src/main/resources/static/js/libs/**','!src/main/resources/static/old/**' ],
+				files : [ 'src/main/resources/static/**/*.js','!src/main/resources/static/js/libs/**' ],
 				tasks : [ 'sync:js' ]
 			},
 			html:{
-				files : [ 'src/main/resources/static/**/*.html','!src/main/resources/static/js/libs/**','!src/main/resources/static/old/**' ],
+				files : [ 'src/main/resources/static/**/*.html','!src/main/resources/static/js/libs/**' ],
 				tasks : [ 'sync:html' ]		
 			},
 			less:{
-				files : [ 'src/main/resources/static/css/**/*.less','!src/main/resources/static/js/libs/**','!src/main/resources/static/old/**' ],
+				files : [ 'src/main/resources/static/css/**/*.less','!src/main/resources/static/js/libs/**' ],
 				tasks : [ 'gitinfo', 'less:min', 'sync:styles' ]		
 			},
 			translations:{
-				files : [ 'src/main/resources/static/js/locales/**/*.json','!src/main/resources/static/js/libs/**','!src/main/resources/static/old/**' ],
+				files : [ 'src/main/resources/static/js/locales/**/*.json','!src/main/resources/static/js/libs/**' ],
 				tasks : [ 'sync:translations' ]		
 			},
 			templates:{
-				files : [ 'src/main/resources/static/js/templates/**/*.html','!src/main/resources/static/js/libs/**','!src/main/resources/static/old/**' ],
+				files : [ 'src/main/resources/static/js/templates/**/*.html','!src/main/resources/static/js/libs/**' ],
 				tasks : [ 'sync:templates' ]		
 			}
 		},

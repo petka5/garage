@@ -8,7 +8,10 @@
 		}
 	},
 	"validation": {
-		"field.required": "Полето е задължително"
+		"field.required": "Полето е задължително",
+		"field.email": "Полето не е валиден емайл",
+		"field.minlength": "Полето е много късо",
+		"field.maxlength": "Полето е много дълго"
 	},
 	"views.main.Splendid!": "Прекрасно!",
 	"directives.language-select.Language": "Език"

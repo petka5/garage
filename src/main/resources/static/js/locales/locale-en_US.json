@@ -8,7 +8,10 @@
 		}
 	},
 	"validation": {
-		"field.required": "The field is required"
+		"field.required": "The field is required",
+		"field.email": "The field is not valid email",
+		"field.minlength": "The field too short",
+		"field.maxlength": "The field too long"
 	},
 	"views.main.Splendid!": "Splendid!",
 	"directives.language-select.Language": "Language"

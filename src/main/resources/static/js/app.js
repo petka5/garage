@@ -9,6 +9,7 @@ define(function(require) {
 	// https://angular-translate.github.io/
 	// https://scotch.io/tutorials/internationalization-of-angularjs-applications
 	// https://github.com/malyw/angular-translate-yeoman/blob/master/app/views/main.html
+	// https://scotch.io/tutorials/angularjs-form-validation-with-ngmessages
 	
 	// https://github.com/emalikterzi/angular-owl-carousel-2
 	// ########################################################
@@ -21,6 +22,7 @@ define(function(require) {
 	require('uiRouter');
 	require('ngSanitize');
 	require('ngFlash');
+	require('ngMessages');
 	
 	require('pascalprecht.translate');
 	require('angular-translate-starage-cookie');
@@ -30,7 +32,7 @@ define(function(require) {
 	
 
 
-	var app = angular.module('app', [ 'ngRoute', 'ngCookies', 'angular-flash.service', 'angular-flash.flash-alert-directive', 'ui.router', 'ngSanitize',
+	var app = angular.module('app', [ 'ngRoute', 'ngCookies', 'ngMessages', 'angular-flash.service', 'angular-flash.flash-alert-directive', 'ui.router', 'ngSanitize',
 		'pascalprecht.translate', 'tmh.dynamicLocale' ]);
 
 	
