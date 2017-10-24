@@ -13,6 +13,8 @@
 		"field.minlength": "The field too short",
 		"field.maxlength": "The field too long"
 	},
-	"views.main.Splendid!": "Splendid!",
+	"errors": {
+		"invalid.login": "Invalid login"
+	},
 	"directives.language-select.Language": "Language"
 }

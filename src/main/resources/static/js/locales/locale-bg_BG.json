@@ -13,6 +13,8 @@
 		"field.minlength": "Полето е много късо",
 		"field.maxlength": "Полето е много дълго"
 	},
-	"views.main.Splendid!": "Прекрасно!",
+	"errors": {
+		"invalid.login": "Невалидни креденшали"
+	},
 	"directives.language-select.Language": "Език"
 }

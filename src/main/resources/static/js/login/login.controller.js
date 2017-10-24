@@ -3,33 +3,35 @@ define([ 'angular', 'app' ], function() {
 
 	angular.module('app').controller('LoginController', LoginController);
 
-	//LoginController.$inject = [ '$location', 'AuthenticationService', 'FlashService' ];
-	LoginController.$inject = [ '$location', 'FlashService' ];
-	//function LoginController($location, AuthenticationService, FlashService) {
-	function LoginController($location,  FlashService) {
+	// LoginController.$inject = [ '$location', 'AuthenticationService',
+	// 'FlashService' ];
+	LoginController.$inject = [ '$location', '$http', 'FlashService' ];
+	// function LoginController($location, AuthenticationService, FlashService)
+	// {
+	function LoginController($location, $http, FlashService) {
 		var vm = this;
-
 		vm.login = login;
 
 		(function initController() {
-			// reset login status
-			//AuthenticationService.ClearCredentials();
+
 		})();
 
 		function login() {
 			vm.dataLoading = true;
-/*			AuthenticationService.Login(vm.username, vm.password, function(response) {
-				if (response.success) {
-					AuthenticationService.SetCredentials(vm.username, vm.password);
-					$location.path('/');
-				} else {
-					FlashService.Error(response.message);
-					vm.dataLoading = false;
-				}*/
-				FlashService.Error("Petka");
 
-			//});
+			var parameter = JSON.stringify({
+				"username" : vm.username,
+				"password" : vm.password
+			});
+			$http.post('/login', parameter).then(function successCallback(response) {
+				console.log(response);
+				vm.dataLoading = false;
+				$location.path('');
+			}, function errorCallback(response) {
+				console.log(response);
+				vm.dataLoading = false;
+				FlashService.Error('errors.invalid.login');
+			});
 		};
 	}
-
 }());
