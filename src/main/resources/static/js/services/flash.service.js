@@ -1,18 +1,11 @@
-define([ 'angular', 'app' ], function() {
-	'use strict';
-
-	angular.module('app').factory('FlashService', FlashService);
-
-	FlashService.$inject = [ '$rootScope' ];
-	function FlashService($rootScope) {
+define([ 'app' ], function(app) {
+	app.factory('FlashService', function($rootScope) {
 		var service = {};
 
 		service.Success = Success;
 		service.Error = Error;
 
 		initService();
-
-		return service;
 
 		function initService() {
 			$rootScope.$on('$locationChangeStart', function() {
@@ -47,5 +40,7 @@ define([ 'angular', 'app' ], function() {
 				keepAfterLocationChange : keepAfterLocationChange
 			};
 		}
-	}
-}());
+
+		return service;
+	});
+});

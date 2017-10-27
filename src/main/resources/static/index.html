@@ -17,6 +17,17 @@
 	<div ng-view="contacts"></div>
 	<a ui-sref="login">Login</a>
 	<div ng-translate-language-select></div>
+
+
+	<!-- div ng-app="OwlCarouselCtrl" ng-cloak>
+	<div ng-view></div>
+	<script type="text/ng-template" id="carousel.html">
+  		<div class="owl-carousel owl-theme" style="background-color: #212121;">
+        	<div class="carousel-item carousel-background" ng-repeat="item in [1, 2, 3, 4, 5, 6]" ng-style="{'background-image': 'url({{images[$index]}})'}"></div>
+  		</div> 
+	</script>
+	</div-->
+	
 	<script src="js/libs/requirejs/require.js" data-main="js/main"></script>
 </body>
 </html>

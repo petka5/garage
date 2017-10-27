@@ -1,5 +1,5 @@
-define([ 'angular', 'app' ], function() {
-	angular.module('app').service('LocaleService', function($translate, LOCALES, $rootScope, tmhDynamicLocale) {
+require([ 'app' ], function(app) {
+	app.service('LocaleService', function($translate, LOCALES, $rootScope, tmhDynamicLocale) {
 		'use strict';
 		// PREPARING LOCALES INFO
 		var localesObj = LOCALES.locales;

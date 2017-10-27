@@ -1,6 +1,5 @@
-define([ 'angular','app' ], function() {
-	angular.module('app').directive('ngTranslateLanguageSelect', function(LocaleService) {
-		'use strict';
+define([ 'app' ], function(app) {
+	return app.directive('ngTranslateLanguageSelect', function(LocaleService) {
 		return {
 			restrict : 'A',
 			replace : true,
@@ -18,5 +17,4 @@ define([ 'angular','app' ], function() {
 			}
 		};
 	});
-	return angular;
 });

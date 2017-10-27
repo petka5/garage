@@ -14,7 +14,7 @@
 		"field.maxlength": "Полето е много дълго"
 	},
 	"errors": {
-		"invalid.login": "Невалидни креденшали"
+		"invalid.login": "Неуспешен логин"
 	},
 	"directives.language-select.Language": "Език"
 }
