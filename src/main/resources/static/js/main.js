@@ -1,5 +1,6 @@
 require.config({
 	paths : {
+		jquery : 'libs/jquery/dist/jquery',
 		angular : 'libs/angular/angular',
 		ngRoute : 'libs/angular-route/angular-route',
 		ngCookies : 'libs/angular-cookies/angular-cookies',
@@ -12,17 +13,19 @@ require.config({
 		'angular-translate-storage-local' : 'libs/angular-translate-storage-local/angular-translate-storage-local',
 		'angular-dynamic-locale': 'libs/angular-dynamic-locale/dist/tmhDynamicLocale',
 		'angular-translate-loader-static-files' : 'libs/angular-translate-loader-static-files/angular-translate-loader-static-files',
-		//'angular-owl-carousel-2' : 'libs/angular-owl-carousel2/src/angular-owl-carousel-2',
+		'angular-owl-carousel-2' : 'libs/angular-owl-carousel2/src/angular-owl-carousel-2',
 		
 		languageSelectDirective: 'directives/languageSelectDirective',
 		localeService : 'services/localeService',
 		flashService : 'services/flash.service',
-		loginController : 'login/login.controller'
+		loginController : 'login/login.controller',
+		owlCarousel : 'login/owl-carousel'
 
 	},
 	shim : {
 		angular : {
-			exports : "angular"
+			exports : "angular",
+			deps : [ "jquery" ]
 		},
 		ngRoute : {
 			deps : [ "angular" ]
@@ -57,16 +60,19 @@ require.config({
 		flashService: {
 			deps : [ "app","ngFlash" ]
 		},
-/*		'angular-owl-carousel-2' : {
+		'angular-owl-carousel-2' : {
 			deps : ['angular']
-		},*/
+		},
 		loginController: {
 			deps : [ "app" ]
 		},
+		owlCarousel :{
+			deps : [ "app" ]
+		}
 	},
 // packages : [ "starter" ]
 });
 
-require([ "angular", "app",  "languageSelectDirective", "localeService", "flashService", "loginController" ], function(angular) {
+require([ "angular", "app",  "languageSelectDirective", "localeService", "flashService", "loginController", "angular-owl-carousel-2" ], function(angular) {
 	angular.bootstrap(document.documentElement, [ "app" ]);
 });
