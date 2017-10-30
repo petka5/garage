@@ -34,7 +34,7 @@ define('app', function(require) {
 	require('angular-translate-loader-static-files');
 
 	var app = angular.module('app', [ 'ngRoute', 'ngCookies', 'ngMessages', 'angular-flash.service', 'angular-flash.flash-alert-directive', 'ui.router',
-			'ngSanitize', 'pascalprecht.translate', 'tmh.dynamicLocale' ]);
+			'ngSanitize', 'pascalprecht.translate', 'tmh.dynamicLocale', 'angular-owl-carousel-2' ]);
 
 	app.init = function() {
 		angular.bootstrap(document, [ 'app' ]);
@@ -89,20 +89,23 @@ define('app', function(require) {
 	});
 	
 	app.controller('carousel', function ($scope, $timeout) {
-	    var owlAPi;
-	    $scope.items = [1, 2, 3, 4, 5, 6, 7, 8, 10];
+	    var owlApi;
+	    $scope.items = [ 'oil_change.jpg','gearbox.jpg','air-presure.jpg'];
 	    $scope.properties = {
-	        // autoHeight:true,
 	        animateIn: 'fadeIn',
+	        animateOut: 'fadeOut',
 	        lazyLoad: true,
-	        items: 5,
-	        margin: 10
-
+	        items: 1,
+	        nav: false,
+	        margin: 10,
+	        autoplay: true,
+	        loop : true
 	    };
 
 	    $scope.ready = function ($api) {
-	        owlAPi = $api;
+	        owlApi = $api;
 	    };
+
 	});
 	
 	return app;

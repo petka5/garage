@@ -19,24 +19,12 @@
 	<div ng-translate-language-select></div>
 
 
-	<!-- div ng-app="OwlCarouselCtrl" ng-cloak-->
-	<div ng-view="carousel"></div>
-
-	<ng-controller ng-controller="carousel">
+	<div data-ng-controller="carousel" ng-cloak>
 		<ng-owl-carousel class="owl-theme" owl-items="items" owl-properties="properties" owl-ready="ready($api)">
-		    <img class="owl-lazy" style="padding: 5px;" data-ng-repeat="item in items" data-src="img/text-{{item}}.png">
+		    <img class="owl-lazy" style="padding: 5px;" data-ng-repeat="item in items" data-src="css/images/{{item}}">
 		</ng-owl-carousel>
-	</ng-controller>
-
-	<div ng-owl-carousel></div>
-	<div ng-owl-carousel></div>
-	<script type="text/ng-template" id="carousel.html">
-  		<div class="owl-carousel owl-theme" style="background-color: #212121;">
-        	<div class="carousel-item carousel-background" ng-repeat="item in [1, 2, 3, 4, 5, 6]" ng-style="{'background-image': 'url({{images[$index]}})'}"></div>
-  		</div> 
-	</script>
-	<!-- /div-->
+	</div data-ng-controller>
 	
-	<script src="js/libs/requirejs/require.js" data-main="js/main"></script>
+	<script src="js/libs/requirejs/require.js" data-main="js/main"></script>	
 </body>
 </html>

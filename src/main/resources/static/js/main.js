@@ -14,12 +14,13 @@ require.config({
 		'angular-dynamic-locale': 'libs/angular-dynamic-locale/dist/tmhDynamicLocale',
 		'angular-translate-loader-static-files' : 'libs/angular-translate-loader-static-files/angular-translate-loader-static-files',
 		'angular-owl-carousel-2' : 'libs/angular-owl-carousel2/src/angular-owl-carousel-2',
+
+		'owl.carousel' : 'libs/owl.carousel/dist/owl.carousel',
 		
 		languageSelectDirective: 'directives/languageSelectDirective',
 		localeService : 'services/localeService',
 		flashService : 'services/flash.service',
 		loginController : 'login/login.controller',
-		owlCarousel : 'login/owl-carousel'
 
 	},
 	shim : {
@@ -66,13 +67,17 @@ require.config({
 		loginController: {
 			deps : [ "app" ]
 		},
-		owlCarousel :{
-			deps : [ "app" ]
+		'owl.carousel' : {
+			deps : [ 'jquery' ]
+		},
+		'angular-owl-carousel-2': {
+			deps : [ 'jquery', 'owl.carousel', 'angular' ]
 		}
+		
 	},
 // packages : [ "starter" ]
 });
 
-require([ "angular", "app",  "languageSelectDirective", "localeService", "flashService", "loginController", "angular-owl-carousel-2" ], function(angular) {
+require([ "angular", "app", "languageSelectDirective", "localeService", "flashService", "loginController", "angular-owl-carousel-2" ], function(angular) {
 	angular.bootstrap(document.documentElement, [ "app" ]);
 });
