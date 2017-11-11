@@ -17,8 +17,7 @@ require.config({
 
 		'owl.carousel' : 'libs/owl.carousel/dist/owl.carousel',
 		
-		languageSelectDirective: 'directives/languageSelectDirective',
-		localeService : 'services/localeService',
+		langMenuDirective: 'directives/langMenuDirective',
 		flashService : 'services/flash.service',
 		loginController : 'login/login.controller',
 
@@ -78,6 +77,6 @@ require.config({
 // packages : [ "starter" ]
 });
 
-require([ "angular", "app", "languageSelectDirective", "localeService", "flashService", "loginController", "angular-owl-carousel-2" ], function(angular) {
+require([ "angular", "app", "langMenuDirective", "flashService", "loginController", "angular-owl-carousel-2" ], function(angular) {
 	angular.bootstrap(document.documentElement, [ "app" ]);
 });

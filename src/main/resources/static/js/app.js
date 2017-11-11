@@ -15,6 +15,7 @@ define('app', function(require) {
 	// https://codepen.io/luisgleon/pen/pbrZPQ
 	// https://weblogs.asp.net/dwahlin/dynamically-loading-controllers-and-views-with-angularjs-and-requirejs
 	// https://kielczewski.eu/2013/04/integrating-angularjs-with-requirejs/
+	// https://appendto.com/2016/02/working-promises-angularjs-services/
 	// ########################################################
 	// https://spring.io/blog/2016/11/28/going-reactive-with-spring-data
 	// ########################################################
@@ -76,11 +77,11 @@ define('app', function(require) {
 		$translateProvider.useMissingTranslationHandlerLog();
 		$translateProvider.useSanitizeValueStrategy('escape');
 		$translateProvider.useStaticFilesLoader({
-			prefix : 'js/locales/locale-',
+			prefix : 'js/locales/',
 			suffix : '.json'
 		});
 
-		$translateProvider.preferredLanguage("en_US");
+		$translateProvider.preferredLanguage("EN");
 		$translateProvider.useLocalStorage();
 	});
 
