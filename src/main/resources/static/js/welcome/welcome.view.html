@@ -1,0 +1,9 @@
+<div class="col-sm-9">
+	<div data-ng-controller="carousel" ng-cloak>
+		<ng-owl-carousel class="owl-theme" owl-items="items" owl-properties="properties" owl-ready="ready($api)">
+		    <img class="owl-lazy" style="padding: 5px;" data-ng-repeat="item in items" data-src="css/images/{{item}}">
+		</ng-owl-carousel>
+	</div data-ng-controller>
+	
+</div>
+<div class="col-sm-3" ui-view="loginView"></div>

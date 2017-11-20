@@ -16,6 +16,7 @@ define('app', function(require) {
 	// https://weblogs.asp.net/dwahlin/dynamically-loading-controllers-and-views-with-angularjs-and-requirejs
 	// https://kielczewski.eu/2013/04/integrating-angularjs-with-requirejs/
 	// https://appendto.com/2016/02/working-promises-angularjs-services/
+	// https://ui-router.github.io/guide/views
 	// ########################################################
 	// https://spring.io/blog/2016/11/28/going-reactive-with-spring-data
 	// ########################################################
@@ -50,7 +51,21 @@ define('app', function(require) {
 	});
 
 	app.config(function($urlRouterProvider, $stateProvider) {
-		$stateProvider.state('login', {
+		$urlRouterProvider.otherwise('/welcome');
+
+		$stateProvider.state('welcome', { 
+			url : '/welcome',
+			views : {
+				'layout' : {
+					templateUrl : 'js/welcome/welcome.view.html'
+				},
+				'layout.loginView' : {
+					controller : 'LoginController',
+					templateUrl : 'js/login/login.view.html',
+					controllerAs : 'vm'
+				}
+			}
+		}).state('login', {
 			url : '/login',
 			views : {
 				'loginView' : {
@@ -62,7 +77,7 @@ define('app', function(require) {
 		}).state('register', {
 			url : '/register',
 			views : {
-				'loginView' : {
+				'layout' : {
 					controller : 'LoginController',
 					templateUrl : 'js/register/register.view.html',
 					controllerAs : 'vm'

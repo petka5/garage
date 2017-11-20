@@ -6,24 +6,14 @@
 <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
-    <div class="jumbotron">
-        <div class="container">
-            <div class="col-sm-8 col-sm-offset-2">
-				<div ui-view="loginView"></div>
-            </div>
-        </div>
+	<div class="container viewport">
+	    <div class="jumbotron">
+	        <div class="container">
+	        	<div my-lang-menu></div>
+				<div ui-view="layout"></div>
+	        </div>
+	    </div>
     </div>
-	<div ng-view="contacts"></div>
-	<a ui-sref="login">Login</a>
-	<div my-lang-menu></div>
-
-
-	<div data-ng-controller="carousel" ng-cloak>
-		<ng-owl-carousel class="owl-theme" owl-items="items" owl-properties="properties" owl-ready="ready($api)">
-		    <img class="owl-lazy" style="padding: 5px;" data-ng-repeat="item in items" data-src="css/images/{{item}}">
-		</ng-owl-carousel>
-	</div data-ng-controller>
-	
 	<script src="js/libs/requirejs/require.js" data-main="js/main"></script>	
 </body>
 </html>
