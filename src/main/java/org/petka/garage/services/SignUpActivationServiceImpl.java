@@ -52,7 +52,7 @@ public class SignUpActivationServiceImpl implements SignUpActivationService {
 
     @Override
     public UserDto activate(String id) {
-        UserRegistration registration = userRegistrationRepository.findOne(id);
+        UserRegistration registration = userRegistrationRepository.findById(id);
         if (registration != null) {
             User user = convertToUser(registration);
             userRepository.save(user);

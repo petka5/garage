@@ -8,7 +8,7 @@ import org.springframework.data.repository.Repository;
 
 public interface UserRepository extends Repository<User, String> {
 
-    public Optional<User> findOne(String id);
+    public Optional<User> findById(String id);
 
     public User save(User user);
 

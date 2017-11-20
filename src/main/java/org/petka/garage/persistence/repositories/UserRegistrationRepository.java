@@ -11,7 +11,7 @@ public interface UserRegistrationRepository extends Repository<UserRegistration,
 
     public List<UserRegistration> findAll();
 
-    public UserRegistration findOne(String id);
+    public UserRegistration findById(String id);
 
     public UserRegistration save(UserRegistration user);
 

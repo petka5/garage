@@ -12,7 +12,7 @@ public interface CountryRepository extends Repository<Country, String> {
 
     public List<Country> findAll();
 
-    public Optional<Country> findOne(String id);
+    public Optional<Country> findById(String id);
 
     public Optional<Country> findByName(String name);
 

@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto findById(String id) {
-        Optional<User> user = userRepository.findOne(id);
+        Optional<User> user = userRepository.findById(id);
         return convertToDTO(user.get());
     }
 

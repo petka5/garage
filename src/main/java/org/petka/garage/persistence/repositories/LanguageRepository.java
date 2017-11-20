@@ -12,7 +12,7 @@ public interface LanguageRepository extends Repository<Language, String> {
 
     public List<Language> findAll();
 
-    public Optional<Language> findOne(String id);
+    public Optional<Language> findById(String id);
 
     public Optional<Language> findByName(String name);
 
